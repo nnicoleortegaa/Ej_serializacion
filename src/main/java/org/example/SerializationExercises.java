@@ -66,6 +66,7 @@ public class SerializationExercises {
             }
         }
     }
+
     public static class Exercise2 {
         public static void main(String[] args) {
 
@@ -118,10 +119,6 @@ public class SerializationExercises {
             }
 
 
-
-
-
-
             try (FileOutputStream fileOutputStream = new FileOutputStream("movieSerialized.dat");
                  ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
                 objectOutputStream.writeObject(movie1);
@@ -143,7 +140,6 @@ public class SerializationExercises {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -159,6 +155,32 @@ public class SerializationExercises {
             Session deserializedSession2;
 
 
+            try (FileInputStream fileInputStream = new FileInputStream("movieSerialized.dat");
+                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+                deserializedMovie1 = (Movie) objectInputStream.readObject();
+                deserializedMovie2 = (Movie) objectInputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try (FileInputStream fileInputStream = new FileInputStream("theaterSerialized.dat");
+                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+                deserializedTheater1 = (Theater) objectInputStream.readObject();
+                deserializedTheater2 = (Theater) objectInputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try (FileInputStream fileInputStream = new FileInputStream("sessionSerialized.dat");
+                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+                deserializedSession1 = (Session) objectInputStream.readObject();
+                deserializedSession2 = (Session) objectInputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                return;
             }
         }
     }
+}
