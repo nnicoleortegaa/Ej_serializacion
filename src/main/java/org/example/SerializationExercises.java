@@ -1,16 +1,14 @@
 package org.example;
 
+import com.google.gson.Gson;
 import org.example.model.Movie;
 import org.example.model.Session;
 import org.example.model.Theater;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class SerializationExercises {
-    /*
-        Should define the class for the concepts Movie, Theater and Session.
-        A session is a play of movie in a theater.
-        Create 2 instances of each class and relate among them.
-        Serialize to Json all objects and save then in different files.
-     */
     public static class Exercise1 {
         public static void main(String[] args) {
 
@@ -23,8 +21,53 @@ public class SerializationExercises {
             Session session1 = new Session(movie1, theater1);
             Session session2 = new Session(movie2, theater2);
 
+
+            Gson gson = new Gson();
+            String movie1Json = gson.toJson(movie1);
+            String movie2Json = gson.toJson(movie2);
+            String theater1Json = gson.toJson(theater1);
+            String theater2Json = gson.toJson(theater2);
+            String session1Json = gson.toJson(session1);
+            String session2Json = gson.toJson(session2);
+
+            try (FileWriter file1 = new FileWriter("movie1.json")) {
+                file1.write(movie1Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter file2 = new FileWriter("movie2.json")) {
+                file2.write(movie2Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter file3 = new FileWriter("theater1.json")) {
+                file3.write(theater1Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter file4 = new FileWriter("theater2.json")) {
+                file4.write(theater2Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter file5 = new FileWriter("session1.json")) {
+                file5.write(session1Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try (FileWriter file6 = new FileWriter("session2.json")) {
+                file6.write(session2Json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     /*
         Deserialize the objects created in exercise 1.
