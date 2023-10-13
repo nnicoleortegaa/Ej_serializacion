@@ -121,7 +121,6 @@ public class SerializationExercises {
 
 
 
-
             try (FileOutputStream fileOutputStream = new FileOutputStream("movieSerialized.dat");
                  ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
                 objectOutputStream.writeObject(movie1);
