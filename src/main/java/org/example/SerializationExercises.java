@@ -5,8 +5,7 @@ import org.example.model.Movie;
 import org.example.model.Session;
 import org.example.model.Theater;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class SerializationExercises {
     public static class Exercise1 {
@@ -67,18 +66,88 @@ public class SerializationExercises {
             }
         }
     }
-
-
-    /*
-        Deserialize the objects created in exercise 1.
-        Now serialize them using ObjectOutputStream
-     */
     public static class Exercise2 {
-
         public static void main(String[] args) {
+
+            Gson gson = new Gson();
+            Movie movie1;
+            Movie movie2;
+            Theater theater1;
+            Theater theater2;
+            Session session1;
+            Session session2;
+
+            try (FileReader fileReader1 = new FileReader("movie1.json")) {
+                movie1 = gson.fromJson(fileReader1, Movie.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try (FileReader fileReader2 = new FileReader("movie2.json")) {
+                movie2 = gson.fromJson(fileReader2, Movie.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            try (FileReader fileReader3 = new FileReader("theater1.json")) {
+                theater1 = gson.fromJson(fileReader3, Theater.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try (FileReader fileReader4 = new FileReader("theater2.json")) {
+                theater2 = gson.fromJson(fileReader4, Theater.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            try (FileReader fileReader5 = new FileReader("session1.json")) {
+                session1 = gson.fromJson(fileReader5, Session.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try (FileReader fileReader6 = new FileReader("session2.json")) {
+                session2 = gson.fromJson(fileReader6, Session.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+
+
+
+
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream("movieSerialized.dat");
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(movie1);
+                objectOutputStream.writeObject(movie2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileOutputStream fileOutputStream = new FileOutputStream("theaterSerialized.dat");
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(theater1);
+                objectOutputStream.writeObject(theater2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileOutputStream fileOutputStream = new FileOutputStream("sessionSerialized.dat");
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(session1);
+                objectOutputStream.writeObject(session2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
     }
+
+
 
     /*
        Deserialize the objects from the binary files created in exercise 2.
