@@ -121,6 +121,7 @@ public class SerializationExercises {
 
 
 
+
             try (FileOutputStream fileOutputStream = new FileOutputStream("movieSerialized.dat");
                  ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
                 objectOutputStream.writeObject(movie1);
@@ -147,14 +148,18 @@ public class SerializationExercises {
     }
 
 
-
-    /*
-       Deserialize the objects from the binary files created in exercise 2.
-    */
     public static class Exercise3 {
-
         public static void main(String[] args) {
 
+            Movie deserializedMovie1;
+            Movie deserializedMovie2;
+            Theater deserializedTheater1;
+            Theater deserializedTheater2;
+            Session deserializedSession1;
+            Session deserializedSession2;
+
+
+            }
         }
     }
 }
